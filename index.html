@@ -145,6 +145,19 @@
     margin-bottom: 10px;
   }
 
+  /* Success message */
+  .success {
+    color: #28a745;
+    font-size: 1.1em;
+    margin: 20px auto;
+    text-align: center;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #d4edda;
+    border-radius: 8px;
+    border: 1px solid #c3e6cb;
+  }
+
   /* Test cases section */
   .testcases {
     max-width: 900px;
@@ -214,7 +227,13 @@
     <div id="credentialsDisplay"></div>
   </div>
 
-
+  <!-- Success message (hidden by default) -->
+  <div id="successMessage" class="success" style="display: none;">
+    <h2>Login Successful! 🎉</h2>
+    <p>You have successfully logged in with valid credentials.</p>
+    <p id="loggedInCredentials"></p>
+    <button onclick="location.reload()">Log Out</button>
+  </div>
 
   <!-- Test Cases -->
   <div class="testcases">
@@ -272,7 +291,8 @@
   const emailError = document.getElementById('emailError');
   const passwordError = document.getElementById('passwordError');
   const credentialError = document.getElementById('credentialError');
-  const credentialsDisplay = document.getElementById('credentialsDisplay');
+  const successMessage = document.getElementById('successMessage');
+  const loggedInCredentials = document.getElementById('loggedInCredentials');
 
   function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -284,7 +304,6 @@
     emailError.textContent = "";
     passwordError.textContent = "";
     credentialError.textContent = "";
-    credentialsDisplay.textContent = "";
 
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
@@ -310,8 +329,10 @@
       return;
     }
 
-    credentialsDisplay.textContent = `Entered Email: ${email}\nEntered Password: ${password}`;
+    // Successful login
     document.getElementById('loginCard').style.display = "none";
+    successMessage.style.display = "block";
+    loggedInCredentials.textContent = `Logged in as: ${email}`;
   });
 </script>
 </body>
