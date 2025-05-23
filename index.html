@@ -223,211 +223,218 @@
     margin-bottom: 10px;
   }
 
-  .testcases {
-    max-width: 900px;
-    margin: 0 auto 50px auto;
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  .header {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    padding: 20px 0;
+    margin: -30px -20px 30px -20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   }
-  .testcases h3 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: #007bff;
-    font-weight: 700;
+
+  .header h1 {
+    color: white;
+    margin: 0 0 20px 0;
+    text-align: center;
   }
-  .test-case {
-    margin-bottom: 20px;
+
+  .nav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    max-width: 400px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.1);
+    border-radius: 25px;
+    padding: 4px;
   }
-  .test-case strong {
-    display: block;
-    margin-bottom: 8px;
-    color: #0069d9;
-  }
-  .test-case em {
+
+  .nav-tab {
+    flex: 1;
+    padding: 12px 20px;
+    background: transparent;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Playfair Display', serif;
     font-weight: 600;
-    display: inline-block;
-    margin-top: 8px;
   }
-  ul {
-    padding-left: 20px;
-    margin: 8px 0;
+
+  .nav-tab:hover {
+    background: rgba(255,255,255,0.1);
+  }
+
+  .nav-tab.active {
+    background: white;
+    color: #007bff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  .main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>Login and Registration Page</h1>
-  <p class="description">
-    Practice your login and registration automation skills here. Use the provided credentials to test various scenarios.
-  </p>
-
-  <!-- Login Card -->
-  <div class="card" id="loginCard">
-    <h2>Login</h2>
-    <div class="credentials-info">
-      <strong>Valid Credentials:</strong>
-      Email: user@example.com<br>
-      Password: password123
+<div class="header">
+  <div class="main-content">
+    <h1>User Management System</h1>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showTab('login')">Login</button>
+      <button class="nav-tab" onclick="showTab('register')">Register</button>
     </div>
-    <form id="loginForm" novalidate>
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="Enter your email" />
-      <div class="error" id="emailError"></div>
-
-      <label for="password">Password</label>
-      <input type="password" id="password" placeholder="Enter your password" />
-      <div class="error" id="passwordError"></div>
-
-      <button type="submit">Login</button>
-      <div class="error" id="credentialError"></div>
-    </form>
   </div>
+</div>
 
-  <!-- Success message after login -->
-  <div id="successMessage" class="success" style="display: none;">
-    <h2>Login Successful! 🎉</h2>
-    <p>You have successfully logged in.</p>
-    <button onclick="showRegisterForm()">Add New User</button>
-    <button class="secondary" onclick="location.reload()">Log Out</button>
-  </div>
+<div class="main-content">
+  <!-- Login Tab -->
+  <div id="loginTab" class="tab-content active">
+    <p class="description">
+      Login with your credentials to access the user management system.
+    </p>
 
-  <!-- Registration Form -->
-  <div id="registerForm" class="register-form">
-    <h2>Registration Form</h2>
-    <form id="registrationForm" enctype="multipart/form-data">
-      <div class="form-row">
-        <div>
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" placeholder="Enter first name" required>
-        </div>
-        <div>
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" placeholder="Enter last name" required>
-        </div>
+    <!-- Login Card -->
+    <div class="card" id="loginCard">
+      <h2>Login</h2>
+      <div class="credentials-info">
+        <strong>Valid Credentials:</strong>
+        Email: user@example.com<br>
+        Password: password123
       </div>
+      <form id="loginForm" novalidate>
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" />
+        <div class="error" id="emailError"></div>
 
-      <label for="address">Address</label>
-      <textarea id="address" rows="3" placeholder="Enter your address" required></textarea>
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" />
+        <div class="error" id="passwordError"></div>
 
-      <div class="form-row">
-        <div>
-          <label for="regEmail">Email</label>
-          <input type="email" id="regEmail" placeholder="Enter email" required>
-        </div>
-        <div>
-          <label for="phone">Phone</label>
-          <input type="tel" id="phone" placeholder="Enter phone number" required>
-        </div>
-      </div>
-
-      <div class="radio-group">
-        <label>Gender</label>
-        <div>
-          <input type="radio" id="male" name="gender" value="male" checked>
-          <label for="male">Male</label>
-        </div>
-        <div>
-          <input type="radio" id="female" name="gender" value="female">
-          <label for="female">Female</label>
-        </div>
-        <div>
-          <input type="radio" id="other" name="gender" value="other">
-          <label for="other">Other</label>
-        </div>
-      </div>
-
-      <div class="checkbox-group">
-        <label>Hobbies</label>
-        <div>
-          <input type="checkbox" id="reading" name="hobbies" value="reading">
-          <label for="reading">Reading</label>
-        </div>
-        <div>
-          <input type="checkbox" id="sports" name="hobbies" value="sports">
-          <label for="sports">Sports</label>
-        </div>
-        <div>
-          <input type="checkbox" id="music" name="hobbies" value="music">
-          <label for="music">Music</label>
-        </div>
-        <div>
-          <input type="checkbox" id="travel" name="hobbies" value="travel">
-          <label for="travel">Travel</label>
-        </div>
-      </div>
-
-      <label for="skills">Skills</label>
-      <select id="skills" required>
-        <option value="">Select your skill level</option>
-        <option value="beginner">Beginner</option>
-        <option value="intermediate">Intermediate</option>
-        <option value="advanced">Advanced</option>
-        <option value="expert">Expert</option>
-      </select>
-
-      <label for="dob">Date of Birth</label>
-      <input type="date" id="dob" required>
-
-      <label for="photo">Upload Photo</label>
-      <input type="file" id="photo" accept="image/*">
-
-      <input type="hidden" id="editId" value="">
-
-      <button type="submit" id="saveBtn">Save</button>
-      <button type="button" class="secondary" onclick="cancelRegistration()">Cancel</button>
-    </form>
-  </div>
-
-  <!-- Registered Users List -->
-  <div id="registeredUsers" class="registered-users">
-    <h2>Registered Users</h2>
-    <div id="usersList"></div>
-  </div>
-
-  <!-- Test Cases (only visible before login) -->
-  <div id="testCasesSection" class="testcases">
-    <h3>Test Cases</h3>
-    <div class="test-case">
-      <strong>✅ Test Case 1: Login with Empty Fields</strong>
-      <em>Steps:</em>
-      <ul>
-        <li>Navigate to the login page.</li>
-        <li>Leave username and password empty.</li>
-        <li>Click login.</li>
-      </ul>
-      <em>Expected:</em>
-      <ul>
-        <li>Show "required" error messages.</li>
-        <li>Do not proceed.</li>
-      </ul>
+        <button type="submit">Login</button>
+        <div class="error" id="credentialError"></div>
+      </form>
     </div>
-    <div class="test-case">
-      <strong>✅ Test Case 2: Invalid Credentials</strong>
-      <em>Steps:</em>
-      <ul>
-        <li>Enter wrong email or password.</li>
-        <li>Click login.</li>
-      </ul>
-      <em>Expected:</em>
-      <ul>
-        <li>Show "wrong credentials" message.</li>
-      </ul>
+
+    <!-- Success message after login -->
+    <div id="successMessage" class="success" style="display: none;">
+      <h2>Login Successful! 🎉</h2>
+      <p>You have successfully logged in.</p>
+      <button onclick="showTab('register')">Add New User</button>
+      <button class="secondary" onclick="location.reload()">Log Out</button>
     </div>
-    <div class="test-case">
-      <strong>✅ Test Case 3: Valid Credentials</strong>
-      <em>Steps:</em>
-      <ul>
-        <li>Enter correct email and password.</li>
-        <li>Click login.</li>
-      </ul>
-      <em>Expected:</em>
-      <ul>
-        <li>Login successful message.</li>
-        <li>Show options to add new user.</li>
-      </ul>
+
+    <!-- Registered Users List -->
+    <div id="registeredUsers" class="registered-users">
+      <h2>Registered Users</h2>
+      <div id="usersList"></div>
+    </div>
+  </div>
+
+  <!-- Register Tab -->
+  <div id="registerTab" class="tab-content">
+    <p class="description">
+      Register new users in the system. All fields are required unless specified otherwise.
+    </p>
+
+    <!-- Registration Form -->
+    <div class="register-form" style="display: block;">
+      <div class="card" style="max-width: 600px;">
+        <h2>Registration Form</h2>
+        <form id="registrationForm" enctype="multipart/form-data">
+          <div class="form-row">
+            <div>
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" placeholder="Enter first name" required>
+            </div>
+            <div>
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" placeholder="Enter last name" required>
+            </div>
+          </div>
+
+          <label for="address">Address</label>
+          <textarea id="address" rows="3" placeholder="Enter your address" required></textarea>
+
+          <div class="form-row">
+            <div>
+              <label for="regEmail">Email</label>
+              <input type="email" id="regEmail" placeholder="Enter email" required>
+            </div>
+            <div>
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" placeholder="Enter phone number" required>
+            </div>
+          </div>
+
+          <div class="radio-group">
+            <label>Gender</label>
+            <div>
+              <input type="radio" id="male" name="gender" value="male" checked>
+              <label for="male">Male</label>
+            </div>
+            <div>
+              <input type="radio" id="female" name="gender" value="female">
+              <label for="female">Female</label>
+            </div>
+            <div>
+              <input type="radio" id="other" name="gender" value="other">
+              <label for="other">Other</label>
+            </div>
+          </div>
+
+          <div class="checkbox-group">
+            <label>Hobbies</label>
+            <div>
+              <input type="checkbox" id="reading" name="hobbies" value="reading">
+              <label for="reading">Reading</label>
+            </div>
+            <div>
+              <input type="checkbox" id="sports" name="hobbies" value="sports">
+              <label for="sports">Sports</label>
+            </div>
+            <div>
+              <input type="checkbox" id="music" name="hobbies" value="music">
+              <label for="music">Music</label>
+            </div>
+            <div>
+              <input type="checkbox" id="travel" name="hobbies" value="travel">
+              <label for="travel">Travel</label>
+            </div>
+          </div>
+
+          <label for="skills">Skills</label>
+          <select id="skills" required>
+            <option value="">Select your skill level</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+            <option value="expert">Expert</option>
+          </select>
+
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" required>
+
+          <label for="photo">Upload Photo (Optional)</label>
+          <input type="file" id="photo" accept="image/*">
+
+          <input type="hidden" id="editId" value="">
+
+          <button type="submit" id="saveBtn">Save User</button>
+          <button type="button" class="secondary" onclick="cancelRegistration()">Cancel</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
@@ -447,12 +454,34 @@
   const credentialError = document.getElementById('credentialError');
   const successMessage = document.getElementById('successMessage');
   const loginCard = document.getElementById('loginCard');
-  const registerForm = document.getElementById('registerForm');
   const registrationForm = document.getElementById('registrationForm');
   const registeredUsers = document.getElementById('registeredUsers');
   const usersList = document.getElementById('usersList');
   const saveBtn = document.getElementById('saveBtn');
-  const testCasesSection = document.getElementById('testCasesSection');
+
+  // Tab management
+  function showTab(tabName) {
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(tab => {
+      tab.classList.remove('active');
+    });
+    
+    // Remove active class from all nav tabs
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.classList.remove('active');
+    });
+    
+    // Show selected tab
+    document.getElementById(tabName + 'Tab').classList.add('active');
+    
+    // Add active class to selected nav tab
+    event.target.classList.add('active');
+    
+    // Load users when switching to login tab (if logged in)
+    if (tabName === 'login' && localStorage.getItem('isLoggedIn') === 'true') {
+      loadUsers();
+    }
+  }
 
   // Initialize the app
   document.addEventListener('DOMContentLoaded', function() {
@@ -552,6 +581,9 @@
     localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
     loadUsers();
     cancelRegistration();
+    
+    // Show success message
+    alert(user.editId ? 'User updated successfully!' : 'User registered successfully!');
   }
 
   function loadUsers() {
@@ -608,8 +640,8 @@
       document.getElementById('dob').value = user.dob;
       document.getElementById('editId').value = user.id;
       
-      saveBtn.textContent = 'Update';
-      showRegisterForm();
+      saveBtn.textContent = 'Update User';
+      showTab('register');
     }
   }
 
@@ -625,22 +657,18 @@
   function cancelRegistration() {
     registrationForm.reset();
     document.getElementById('editId').value = '';
-    saveBtn.textContent = 'Save';
-    registerForm.style.display = 'none';
-    registeredUsers.style.display = 'block';
+    saveBtn.textContent = 'Save User';
+    showTab('login');
   }
 
   function showRegisterForm() {
-    registerForm.style.display = 'block';
-    registeredUsers.style.display = 'none';
-    successMessage.style.display = 'none';
+    showTab('register');
   }
 
   function loginSuccess() {
     loginCard.style.display = "none";
     successMessage.style.display = "block";
     registeredUsers.style.display = "block";
-    testCasesSection.style.display = "none"; // Hide test cases after login
     loadUsers();
   }
 
